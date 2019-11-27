@@ -1,0 +1,22 @@
+Структура БД:
+
+1)	Таблица Articles
+		id (ключ)
+		theme
+
+2)	Таблица Tags
+		id (ключ)
+		text
+
+3)	Таблица связей LinksTable (с уникальным индексом по двум столбцам)
+		articleId
+		tagId
+
+
+Запрос на все пары "Тема статьи - тэг":
+
+SELECT Articles.theme,
+       Tags.text
+FROM Articles
+LEFT JOIN LinksTable ON Articles.id = LinksTable.articleId
+LEFT JOIN Tags ON LinksTable.tagId = Tags.id
